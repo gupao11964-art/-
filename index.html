@@ -1,12 +1,22 @@
 <script>
 function checkScore(){
-  let correct = 0;
+  let totalCorrect = 0;
+
+  let score = {
+    thai: {correct:0, total:0},
+    math: {correct:0, total:0},
+    sci: {correct:0, total:0}
+  };
+
   const questions = document.querySelectorAll('.question');
 
-  questions.forEach((q, index) => {
-    const answer = q.getAttribute('data-answer');
+  questions.forEach(q => {
+    const answer = q.dataset.answer;
+    const subject = q.dataset.subject;
     const selected = q.querySelector('input:checked');
     const feedback = q.querySelector('.feedback');
+
+    score[subject].total++;
 
     if(!selected){
       feedback.innerHTML = "❗ ยังไม่ได้เลือกคำตอบ";
@@ -15,7 +25,8 @@ function checkScore(){
     }
 
     if(selected.value === answer){
-      correct++;
+      totalCorrect++;
+      score[subject].correct++;
       feedback.innerHTML = "✅ ถูก";
       feedback.className = "feedback correct";
     }else{
@@ -24,9 +35,12 @@ function checkScore(){
     }
   });
 
-  document.getElementById("result").innerHTML =
-    "คุณได้คะแนน " + correct + " / " + questions.length;
+  document.getElementById("result").innerHTML = `
+    <h3>📊 สรุปคะแนน</h3>
+    📘 ภาษาไทย: ${score.thai.correct} / ${score.thai.total}<br>
+    📐 คณิตศาสตร์: ${score.math.correct} / ${score.math.total}<br>
+    🔬 วิทยาศาสตร์: ${score.sci.correct} / ${score.sci.total}<br><br>
+    ✅ คะแนนรวมทั้งหมด: ${totalCorrect} / ${questions.length}
+  `;
 }
-        </script>
-        .feedback.correct { color: green; font-weight: bold; }
-.feedback.wrong { color: red; font-weight: bold; }
+</script>
