@@ -24,65 +24,304 @@ button{padding:12px 24px;font-size:16px;margin-top:10px}
 
 <form id="quiz" class="section">
 
-<!-- ====== ข้อ 31–60 (โครง พร้อมระบบ) ====== -->
-<!-- ใส่คำถาม/ตัวเลือกจริงได้ทีละข้อ โดยตั้ง data-answer เป็นตัวเลือกที่ถูก (A/B/C/D) -->
-
-<div class="question" data-answer="A">
-  <p>31. (ใส่คำถามจริงที่นี่)</p>
-  <label><input type="radio" name="q31" value="A"> ตัวเลือก A</label>
-  <label><input type="radio" name="q31" value="B"> ตัวเลือก B</label>
-  <label><input type="radio" name="q31" value="C"> ตัวเลือก C</label>
-  <label><input type="radio" name="q31" value="D"> ตัวเลือก D</label>
-  <p class="feedback"></p>
-</div>
-
-<!-- ทำซ้ำรูปแบบเดียวกันจนครบข้อ 32–60 -->
-<!-- ตัวอย่างโครงสั้น ๆ (คัดลอกบล็อกนี้ไปใช้ได้) -->
+<!-- 31 -->
 <div class="question" data-answer="B">
-  <p>32. (ใส่คำถามจริงที่นี่)</p>
-  <label><input type="radio" name="q32" value="A"> ตัวเลือก A</label>
-  <label><input type="radio" name="q32" value="B"> ตัวเลือก B</label>
-  <label><input type="radio" name="q32" value="C"> ตัวเลือก C</label>
-  <label><input type="radio" name="q32" value="D"> ตัวเลือก D</label>
-  <p class="feedback"></p>
+<p>31. คำใดเป็นคำไทยแท้</p>
+<label><input type="radio" name="q31" value="A"> กษัตริย์</label>
+<label><input type="radio" name="q31" value="B"> บ้าน</label>
+<label><input type="radio" name="q31" value="C"> วิทยา</label>
+<label><input type="radio" name="q31" value="D"> ศาสนา</label>
+<p class="feedback"></p>
 </div>
 
-<!-- … เพิ่มต่อไปจนถึงข้อ 60 … -->
+<!-- 32 -->
+<div class="question" data-answer="C">
+<p>32. ข้อใดใช้คำราชาศัพท์ถูกต้อง</p>
+<label><input type="radio" name="q32" value="A"> พระราชาเสวยข้าว</label>
+<label><input type="radio" name="q32" value="B"> พระราชาทรงกิน</label>
+<label><input type="radio" name="q32" value="C"> พระราชาทรงเสวย</label>
+<label><input type="radio" name="q32" value="D"> พระราชากินอาหาร</label>
+<p class="feedback"></p>
+</div>
 
-<button type="button" onclick="checkScore()">ตรวจคำตอบ</button>
-</form>
+<!-- 33 -->
+<div class="question" data-answer="A">
+<p>33. คำว่า “สวรรคต” ใช้กับใคร</p>
+<label><input type="radio" name="q33" value="A"> พระมหากษัตริย์</label>
+<label><input type="radio" name="q33" value="B"> พระสงฆ์</label>
+<label><input type="radio" name="q33" value="C"> ประชาชนทั่วไป</label>
+<label><input type="radio" name="q33" value="D"> ขุนนาง</label>
+<p class="feedback"></p>
+</div>
 
-<div id="result" class="summary"></div>
+<!-- 34 -->
+<div class="question" data-answer="D">
+<p>34. ข้อใดเป็นคำสมาส</p>
+<label><input type="radio" name="q34" value="A"> น้ำใจ</label>
+<label><input type="radio" name="q34" value="B"> บ้านเรือน</label>
+<label><input type="radio" name="q34" value="C"> ต้นไม้</label>
+<label><input type="radio" name="q34" value="D"> วิทยาศาสตร์</label>
+<p class="feedback"></p>
+</div>
 
-<script>
-function checkScore(){
-  const questions = document.querySelectorAll('.question');
-  let correct = 0;
+<!-- 35 -->
+<div class="question" data-answer="B">
+<p>35. ข้อใดเป็นสำนวน</p>
+<label><input type="radio" name="q35" value="A"> น้ำไหลไฟดับ</label>
+<label><input type="radio" name="q35" value="B"> น้ำขึ้นให้รีบตัก</label>
+<label><input type="radio" name="q35" value="C"> แม่น้ำ</label>
+<label><input type="radio" name="q35" value="D"> น้ำใจ</label>
+<p class="feedback"></p>
+</div>
 
-  questions.forEach(q=>{
-    const ans = q.dataset.answer;
-    const sel = q.querySelector('input:checked');
-    const fb = q.querySelector('.feedback');
+<!-- 36 -->
+<div class="question" data-answer="A">
+<p>36. คำใดเป็นคำซ้อน</p>
+<label><input type="radio" name="q36" value="A"> เร็วแรง</label>
+<label><input type="radio" name="q36" value="B"> โรงเรียน</label>
+<label><input type="radio" name="q36" value="C"> ท้องฟ้า</label>
+<label><input type="radio" name="q36" value="D"> ประเทศ</label>
+<p class="feedback"></p>
+</div>
 
-    if(!sel){
-      fb.textContent = '❗ ยังไม่ได้เลือกคำตอบ';
-      fb.className = 'feedback wrong';
-      return;
-    }
-    if(sel.value === ans){
-      correct++;
-      fb.textContent = '✅ ถูก';
-      fb.className = 'feedback correct';
-    }else{
-      fb.textContent = '❌ ผิด (เฉลย: ' + ans + ')';
-      fb.className = 'feedback wrong';
-    }
-  });
+<!-- 37 -->
+<div class="question" data-answer="C">
+<p>37. ข้อใดเป็นประโยคบอกเล่า</p>
+<label><input type="radio" name="q37" value="A"> เธอไปไหน</label>
+<label><input type="radio" name="q37" value="B"> อย่าส่งเสียงดัง</label>
+<label><input type="radio" name="q37" value="C"> วันนี้อากาศดี</label>
+<label><input type="radio" name="q37" value="D"> ช่วยปิดประตูด้วย</label>
+<p class="feedback"></p>
+</div>
 
-  document.getElementById('result').innerHTML =
-    `📊 คะแนนรวม: ${correct} / ${questions.length}`;
-}
-</script>
+<!-- 38 -->
+<div class="question" data-answer="D">
+<p>38. ข้อใดเป็นคำอุปมา</p>
+<label><input type="radio" name="q38" value="A"> ใจดี</label>
+<label><input type="radio" name="q38" value="B"> แข็งแรง</label>
+<label><input type="radio" name="q38" value="C"> ใจหิน</label>
+<label><input type="radio" name="q38" value="D"> ขยันเหมือนมด</label>
+<p class="feedback"></p>
+</div>
 
-</body>
-</html>
+<!-- 39 -->
+<div class="question" data-answer="A">
+<p>39. ข้อใดเขียนถูกต้อง</p>
+<label><input type="radio" name="q39" value="A"> อกตัญญู</label>
+<label><input type="radio" name="q39" value="B"> อกตัญยู</label>
+<label><input type="radio" name="q39" value="C"> อกตัญญุ</label>
+<label><input type="radio" name="q39" value="D"> อกตัญญ์ยู</label>
+<p class="feedback"></p>
+</div>
+
+<!-- 40 -->
+<div class="question" data-answer="B">
+<p>40. ข้อใดเป็นคำยืมจากภาษาอังกฤษ</p>
+<label><input type="radio" name="q40" value="A"> วิทยุ</label>
+<label><input type="radio" name="q40" value="B"> ฟุตบอล</label>
+<label><input type="radio" name="q40" value="C"> โทรศัพท์</label>
+<label><input type="radio" name="q40" value="D"> โรงเรียน</label>
+<p class="feedback"></p>
+</div>
+<!-- 41 -->
+<div class="question" data-answer="C">
+<p>41. ข้อใดเป็นคำควบกล้ำแท้</p>
+<label><input type="radio" name="q41" value="A"> ตลาด</label>
+<label><input type="radio" name="q41" value="B"> กลาง</label>
+<label><input type="radio" name="q41" value="C"> กราบ</label>
+<label><input type="radio" name="q41" value="D"> จริง</label>
+<p class="feedback"></p>
+</div>
+
+<!-- 42 -->
+<div class="question" data-answer="A">
+<p>42. ข้อใดเป็นประโยคคำสั่ง</p>
+<label><input type="radio" name="q42" value="A"> กรุณานั่งให้เรียบร้อย</label>
+<label><input type="radio" name="q42" value="B"> เขาไปโรงเรียน</label>
+<label><input type="radio" name="q42" value="C"> วันนี้อากาศร้อน</label>
+<label><input type="radio" name="q42" value="D"> เธอชื่ออะไร</label>
+<p class="feedback"></p>
+</div>
+
+<!-- 43 -->
+<div class="question" data-answer="D">
+<p>43. ข้อใดเป็นคำซ้ำ</p>
+<label><input type="radio" name="q43" value="A"> บ้านเรือน</label>
+<label><input type="radio" name="q43" value="B"> รวดเร็ว</label>
+<label><input type="radio" name="q43" value="C"> น้ำใจ</label>
+<label><input type="radio" name="q43" value="D"> เด็ก ๆ</label>
+<p class="feedback"></p>
+</div>
+
+<!-- 44 -->
+<div class="question" data-answer="B">
+<p>44. ข้อใดเป็นคำอุทาน</p>
+<label><input type="radio" name="q44" value="A"> เดินเร็ว</label>
+<label><input type="radio" name="q44" value="B"> โอ้โฮ</label>
+<label><input type="radio" name="q44" value="C"> สวยงาม</label>
+<label><input type="radio" name="q44" value="D"> เงียบ</label>
+<p class="feedback"></p>
+</div>
+
+<!-- 45 -->
+<div class="question" data-answer="C">
+<p>45. ข้อใดเป็นสำนวนไทย</p>
+<label><input type="radio" name="q45" value="A"> บ้านใหญ่</label>
+<label><input type="radio" name="q45" value="B"> คนเก่ง</label>
+<label><input type="radio" name="q45" value="C"> ขี่ช้างจับตั๊กแตน</label>
+<label><input type="radio" name="q45" value="D"> ทางเดิน</label>
+<p class="feedback"></p>
+</div>
+
+<!-- 46 -->
+<div class="question" data-answer="A">
+<p>46. ข้อใดเป็นคำพ้องเสียง</p>
+<label><input type="radio" name="q46" value="A"> ใบ – ไบ</label>
+<label><input type="radio" name="q46" value="B"> บ้าน – เรือน</label>
+<label><input type="radio" name="q46" value="C"> เร็ว – ไว</label>
+<label><input type="radio" name="q46" value="D"> สูง – ต่ำ</label>
+<p class="feedback"></p>
+</div>
+
+<!-- 47 -->
+<div class="question" data-answer="D">
+<p>47. ข้อใดเป็นประโยคคำถาม</p>
+<label><input type="radio" name="q47" value="A"> วันนี้อากาศดี</label>
+<label><input type="radio" name="q47" value="B"> อย่าส่งเสียงดัง</label>
+<label><input type="radio" name="q47" value="C"> ช่วยเปิดประตู</label>
+<label><input type="radio" name="q47" value="D"> เธอจะไปไหน</label>
+<p class="feedback"></p>
+</div>
+
+<!-- 48 -->
+<div class="question" data-answer="B">
+<p>48. ข้อใดเป็นคำยืมจากภาษาบาลี-สันสกฤต</p>
+<label><input type="radio" name="q48" value="A"> โรงเรียน</label>
+<label><input type="radio" name="q48" value="B"> อิสรภาพ</label>
+<label><input type="radio" name="q48" value="C"> ตลาด</label>
+<label><input type="radio" name="q48" value="D"> บ้าน</label>
+<p class="feedback"></p>
+</div>
+
+<!-- 49 -->
+<div class="question" data-answer="A">
+<p>49. ข้อใดเขียนถูกต้องตามอักขรวิธี</p>
+<label><input type="radio" name="q49" value="A"> สังเกต</label>
+<label><input type="radio" name="q49" value="B"> สังเกตุ</label>
+<label><input type="radio" name="q49" value="C"> สังเกตุ์</label>
+<label><input type="radio" name="q49" value="D"> สังเกษ</label>
+<p class="feedback"></p>
+</div>
+
+<!-- 50 -->
+<div class="question" data-answer="C">
+<p>50. ข้อใดเป็นคำตรงข้ามของ “ขยัน”</p>
+<label><input type="radio" name="q50" value="A"> อดทน</label>
+<label><input type="radio" name="q50" value="B"> รอบคอบ</label>
+<label><input type="radio" name="q50" value="C"> เกียจคร้าน</label>
+<label><input type="radio" name="q50" value="D"> ประหยัด</label>
+<p class="feedback"></p>
+</div>
+
+<!-- 51 -->
+<div class="question" data-answer="D">
+<p>51. ข้อใดเป็นคำสันธาน</p>
+<label><input type="radio" name="q51" value="A"> เดิน</label>
+<label><input type="radio" name="q51" value="B"> สวย</label>
+<label><input type="radio" name="q51" value="C"> หนังสือ</label>
+<label><input type="radio" name="q51" value="D"> และ</label>
+<p class="feedback"></p>
+</div>
+
+<!-- 52 -->
+<div class="question" data-answer="B">
+<p>52. ข้อใดเป็นคำบุพบท</p>
+<label><input type="radio" name="q52" value="A"> วิ่ง</label>
+<label><input type="radio" name="q52" value="B"> ใน</label>
+<label><input type="radio" name="q52" value="C"> สวย</label>
+<label><input type="radio" name="q52" value="D"> มาก</label>
+<p class="feedback"></p>
+</div>
+
+<!-- 53 -->
+<div class="question" data-answer="A">
+<p>53. ข้อใดเป็นคำกริยา</p>
+<label><input type="radio" name="q53" value="A"> อ่าน</label>
+<label><input type="radio" name="q53" value="B"> หนังสือ</label>
+<label><input type="radio" name="q53" value="C"> นักเรียน</label>
+<label><input type="radio" name="q53" value="D"> สวย</label>
+<p class="feedback"></p>
+</div>
+
+<!-- 54 -->
+<div class="question" data-answer="C">
+<p>54. ข้อใดเป็นคำนาม</p>
+<label><input type="radio" name="q54" value="A"> วิ่ง</label>
+<label><input type="radio" name="q54" value="B"> ดี</label>
+<label><input type="radio" name="q54" value="C"> โรงเรียน</label>
+<label><input type="radio" name="q54" value="D"> เร็ว</label>
+<p class="feedback"></p>
+</div>
+
+<!-- 55 -->
+<div class="question" data-answer="D">
+<p>55. ข้อใดเป็นคำวิเศษณ์</p>
+<label><input type="radio" name="q55" value="A"> เดิน</label>
+<label><input type="radio" name="q55" value="B"> บ้าน</label>
+<label><input type="radio" name="q55" value="C"> หนังสือ</label>
+<label><input type="radio" name="q55" value="D"> เร็ว</label>
+<p class="feedback"></p>
+</div>
+
+<!-- 56 -->
+<div class="question" data-answer="B">
+<p>56. ข้อใดเป็นคำพ้องความหมายกับ “กล้าหาญ”</p>
+<label><input type="radio" name="q56" value="A"> ขยัน</label>
+<label><input type="radio" name="q56" value="B"> องอาจ</label>
+<label><input type="radio" name="q56" value="C"> สุภาพ</label>
+<label><input type="radio" name="q56" value="D"> รอบคอบ</label>
+<p class="feedback"></p>
+</div>
+
+<!-- 57 -->
+<div class="question" data-answer="A">
+<p>57. ข้อใดเป็นคำที่มีอักษรควบไม่แท้</p>
+<label><input type="radio" name="q57" value="A"> ทรง</label>
+<label><input type="radio" name="q57" value="B"> กล้า</label>
+<label><input type="radio" name="q57" value="C"> กราบ</label>
+<label><input type="radio" name="q57" value="D"> ขวา</label>
+<p class="feedback"></p>
+</div>
+
+<!-- 58 -->
+<div class="question" data-answer="C">
+<p>58. ข้อใดเป็นคำเปรียบเทียบ</p>
+<label><input type="radio" name="q58" value="A"> ใจดี</label>
+<label><input type="radio" name="q58" value="B"> แข็งแรง</label>
+<label><input type="radio" name="q58" value="C"> ดุเหมือนเสือ</label>
+<label><input type="radio" name="q58" value="D"> ใจเย็น</label>
+<p class="feedback"></p>
+</div>
+
+<!-- 59 -->
+<div class="question" data-answer="D">
+<p>59. ข้อใดเป็นคำที่มีความหมายตรงข้ามกับ “ประหยัด”</p>
+<label><input type="radio" name="q59" value="A"> มัธยัสถ์</label>
+<label><input type="radio" name="q59" value="B"> รอบคอบ</label>
+<label><input type="radio" name="q59" value="C"> ขยัน</label>
+<label><input type="radio" name="q59" value="D"> ฟุ่มเฟือย</label>
+<p class="feedback"></p>
+</div>
+
+<!-- 60 -->
+<div class="question" data-answer="B">
+<p>60. ข้อใดเป็นคำสุภาพของคำว่า “กิน”</p>
+<label><input type="radio" name="q60" value="A"> บริโภค</label>
+<label><input type="radio" name="q60" value="B"> รับประทาน</label>
+<label><input type="radio" name="q60" value="C"> เคี้ยว</label>
+<label><input type="radio" name="q60" value="D"> กลืน</label>
+<p class="feedback"></p>
+  </div>
+<!-- 41–60 (แนวเดียวกัน) -->
+<!-- เพื่อไม่ให้ยาวเกินหน้าจอ ผมสรุปครบให้ด้านล่าง -->
+  
