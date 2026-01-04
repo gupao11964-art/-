@@ -1,95 +1,32 @@
-<!DOCTYPE html>
-<html lang="th">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ข้อสอบนักเรียนจ่าทหารเรือ</title>
-
-<style>
-body{
-  font-family: Arial, sans-serif;
-  background:#f5f5f5;
-  padding:15px;
-}
-h1{text-align:center;}
-.section{
-  background:#ffffff;
-  padding:15px;
-  margin-bottom:20px;
-  border-radius:10px;
-}
-.thai{border-left:8px solid #fb8c00;}
-.math{border-left:8px solid #42a5f5;}
-.sci{border-left:8px solid #66bb6a;}
-.question{margin-bottom:15px;}
-button{
-  padding:12px 25px;
-  font-size:16px;
-}
-.correct{color:green;}
-.wrong{color:red;}
-</style>
-</head>
-
-<body>
-
-<h1>ข้อสอบนักเรียนจ่าทหารเรือ</h1>
-<p style="text-align:center;">คลิกตอบ → ตรวจคะแนนตอนจบ</p>
-
-<form id="quiz">
-
-<div class="section thai">
-<h2>📘 ภาษาไทย</h2>
-
-<div class="question">
-<p>1. คำใดเป็นส่วนประกอบของโบสถ์</p>
-<label><input type="radio" name="q1" value="0"> สุวรรณ</label><br>
-<label><input type="radio" name="q1" value="1"> ใบระกา</label><br>
-<label><input type="radio" name="q1" value="0"> ราชรถ</label><br>
-<label><input type="radio" name="q1" value="0"> เกวียน</label>
-</div>
-
-</div>
-
-<div class="section math">
-<h2>📐 คณิตศาสตร์</h2>
-
-<div class="question">
-<p>2. 2 ÷ 0.5 เท่ากับเท่าใด</p>
-<label><input type="radio" name="q2" value="1"> 4</label><br>
-<label><input type="radio" name="q2" value="0"> 2</label><br>
-<label><input type="radio" name="q2" value="0"> 1</label><br>
-<label><input type="radio" name="q2" value="0"> 0.25</label>
-</div>
-
-</div>
-
-<div class="section sci">
-<h2>🔬 วิทยาศาสตร์</h2>
-
-<div class="question">
-<p>3. แรงคืออะไร</p>
-<label><input type="radio" name="q3" value="1"> การผลักหรือดึง</label><br>
-<label><input type="radio" name="q3" value="0"> พลังงาน</label><br>
-<label><input type="radio" name="q3" value="0"> ความเร็ว</label><br>
-<label><input type="radio" name="q3" value="0"> มวล</label>
-</div>
-
-</div>
-
-<button type="button" onclick="checkScore()">ตรวจคำตอบ</button>
-</form>
-
-<h2 id="result"></h2>
-
 <script>
 function checkScore(){
-  const correct = document.querySelectorAll('input[value="1"]:checked').length;
-  const total = document.querySelectorAll('.question').length;
-  document.getElementById("result").innerHTML =
-    "คุณได้คะแนน " + correct + " / " + total;
-}
-</script>
+  let correct = 0;
+  const questions = document.querySelectorAll('.question');
 
-</body>
-</html>
+  questions.forEach((q, index) => {
+    const answer = q.getAttribute('data-answer');
+    const selected = q.querySelector('input:checked');
+    const feedback = q.querySelector('.feedback');
+
+    if(!selected){
+      feedback.innerHTML = "❗ ยังไม่ได้เลือกคำตอบ";
+      feedback.className = "feedback wrong";
+      return;
+    }
+
+    if(selected.value === answer){
+      correct++;
+      feedback.innerHTML = "✅ ถูก";
+      feedback.className = "feedback correct";
+    }else{
+      feedback.innerHTML = "❌ ผิด (คำตอบที่ถูกคือข้อ " + answer + ")";
+      feedback.className = "feedback wrong";
+    }
+  });
+
+  document.getElementById("result").innerHTML =
+    "คุณได้คะแนน " + correct + " / " + questions.length;
+}
+        </script>
+        .feedback.correct { color: green; font-weight: bold; }
+.feedback.wrong { color: red; font-weight: bold; }
