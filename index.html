@@ -1,46 +1,88 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ข้อสอบนักเรียนจ่าทหารเรือ ภาษาไทย 31–60</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f5f5f5;padding:15px}
+h1{text-align:center}
+.section{background:#fff;padding:15px;border-radius:10px}
+.question{margin-bottom:16px}
+label{display:block;margin:4px 0}
+button{padding:12px 24px;font-size:16px;margin-top:10px}
+.feedback.correct{color:green;font-weight:bold}
+.feedback.wrong{color:red;font-weight:bold}
+.summary{margin-top:20px;font-size:18px}
+.note{color:#666}
+</style>
+</head>
+<body>
+
+<h1>ภาษาไทย ข้อ 31–60</h1>
+<p class="note">ทำให้ครบทุกข้อก่อน แล้วกด “ตรวจคำตอบ” (เฉลยจะแสดงทีเดียว)</p>
+
+<form id="quiz" class="section">
+
+<!-- ====== ข้อ 31–60 (โครง พร้อมระบบ) ====== -->
+<!-- ใส่คำถาม/ตัวเลือกจริงได้ทีละข้อ โดยตั้ง data-answer เป็นตัวเลือกที่ถูก (A/B/C/D) -->
+
+<div class="question" data-answer="A">
+  <p>31. (ใส่คำถามจริงที่นี่)</p>
+  <label><input type="radio" name="q31" value="A"> ตัวเลือก A</label>
+  <label><input type="radio" name="q31" value="B"> ตัวเลือก B</label>
+  <label><input type="radio" name="q31" value="C"> ตัวเลือก C</label>
+  <label><input type="radio" name="q31" value="D"> ตัวเลือก D</label>
+  <p class="feedback"></p>
+</div>
+
+<!-- ทำซ้ำรูปแบบเดียวกันจนครบข้อ 32–60 -->
+<!-- ตัวอย่างโครงสั้น ๆ (คัดลอกบล็อกนี้ไปใช้ได้) -->
+<div class="question" data-answer="B">
+  <p>32. (ใส่คำถามจริงที่นี่)</p>
+  <label><input type="radio" name="q32" value="A"> ตัวเลือก A</label>
+  <label><input type="radio" name="q32" value="B"> ตัวเลือก B</label>
+  <label><input type="radio" name="q32" value="C"> ตัวเลือก C</label>
+  <label><input type="radio" name="q32" value="D"> ตัวเลือก D</label>
+  <p class="feedback"></p>
+</div>
+
+<!-- … เพิ่มต่อไปจนถึงข้อ 60 … -->
+
+<button type="button" onclick="checkScore()">ตรวจคำตอบ</button>
+</form>
+
+<div id="result" class="summary"></div>
+
 <script>
 function checkScore(){
-  let totalCorrect = 0;
-
-  let score = {
-    thai: {correct:0, total:0},
-    math: {correct:0, total:0},
-    sci: {correct:0, total:0}
-  };
-
   const questions = document.querySelectorAll('.question');
+  let correct = 0;
 
-  questions.forEach(q => {
-    const answer = q.dataset.answer;
-    const subject = q.dataset.subject;
-    const selected = q.querySelector('input:checked');
-    const feedback = q.querySelector('.feedback');
+  questions.forEach(q=>{
+    const ans = q.dataset.answer;
+    const sel = q.querySelector('input:checked');
+    const fb = q.querySelector('.feedback');
 
-    score[subject].total++;
-
-    if(!selected){
-      feedback.innerHTML = "❗ ยังไม่ได้เลือกคำตอบ";
-      feedback.className = "feedback wrong";
+    if(!sel){
+      fb.textContent = '❗ ยังไม่ได้เลือกคำตอบ';
+      fb.className = 'feedback wrong';
       return;
     }
-
-    if(selected.value === answer){
-      totalCorrect++;
-      score[subject].correct++;
-      feedback.innerHTML = "✅ ถูก";
-      feedback.className = "feedback correct";
+    if(sel.value === ans){
+      correct++;
+      fb.textContent = '✅ ถูก';
+      fb.className = 'feedback correct';
     }else{
-      feedback.innerHTML = "❌ ผิด (คำตอบที่ถูกคือข้อ " + answer + ")";
-      feedback.className = "feedback wrong";
+      fb.textContent = '❌ ผิด (เฉลย: ' + ans + ')';
+      fb.className = 'feedback wrong';
     }
   });
 
-  document.getElementById("result").innerHTML = `
-    <h3>📊 สรุปคะแนน</h3>
-    📘 ภาษาไทย: ${score.thai.correct} / ${score.thai.total}<br>
-    📐 คณิตศาสตร์: ${score.math.correct} / ${score.math.total}<br>
-    🔬 วิทยาศาสตร์: ${score.sci.correct} / ${score.sci.total}<br><br>
-    ✅ คะแนนรวมทั้งหมด: ${totalCorrect} / ${questions.length}
-  `;
+  document.getElementById('result').innerHTML =
+    `📊 คะแนนรวม: ${correct} / ${questions.length}`;
 }
 </script>
+
+</body>
+</html>
